@@ -1,0 +1,40 @@
+<div class="container">
+
+  <div class="row">
+    <!-- Sidebar -->
+    <aside class="col-md-4">
+
+      <!-- Add Url form -->
+      <form name="form" role="form" ng-submit="form.$valid && addFeed()">
+        <div class="row">
+          <div class="input-group">
+            <input name="feed" type="url" ng-model="feedUrl" placeholder="RSS feed url" class="form-control" required>
+            <span class="input-group-btn">
+              <input type="submit" class="btn btn-primary" value="Add">
+            </span>
+          </div>
+        </div>
+      </form>
+
+      <div class="row">
+        <!-- Urls list -->
+        <p class="form-group" ng-repeat="url in feeds">
+          <input type="text" ng-model="url" class="btn" ng-class="{active: url === getActiveUrl()}" ng-click="setFeed($index)">
+        </p>
+      </div>
+    </aside>
+
+    <section class="col-md-8">
+      <!-- Feed url -->
+      <header>
+        <h1>{{ activeUrl }}</h1>
+      </header>
+        <!-- Feed Articles -->
+        <article ng-repeat="article in articles">
+          <header><h2 ng-bind="article.title"></h2></header>
+          <p ng-bind-html="article.description"></p>
+        </article>
+
+    </section>
+  </div>
+</div>
